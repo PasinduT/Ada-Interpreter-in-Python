@@ -26,6 +26,12 @@ class Tokens:
         i = 0
         while(i < len(code)):
             c = code[i]
+
+            if c == ' ':
+                if i < len(code):
+                    i += 1
+                    c = code[i]
+                
             
             if c == '"':
                 if i < len(code):
@@ -61,6 +67,49 @@ class Tokens:
                 if temp.lower() in keywords:
                     res = Keywords(temp.lower())
                 else:
+                    if temp[-1] == '_':
+                        raise ValueError('Invalid identifier name')
                     res = Identifier(temp.lower())
 
                 tokens.append(res)
+
+            elif c.isdigit():
+                temp = 0
+                i = 0
+                while c.isdigit() or c == '.' or c == '_':
+                    if c == '_':
+                        continue
+                    elif c == '.':
+                        i = 1
+                    else:
+                        if i > 0:
+                            temp = temp + int(c) / 10
+                        else:
+                            temp = temp * 10 + int(c)
+
+                    if i < len(code):
+                        i += 1
+                        c = code[i]
+                    else:
+                        break
+
+                if temp > int(temp):
+                    floatLiteral = Literal('float')
+                else:
+                    integerLiteral = Literal('Integer')
+
+            elif c == "'":
+                if i < len(code):
+                    i += 1
+                    c = code[i]
+
+                temp = c
+
+                if i < len(code):
+                    i += 1
+                    c = code[i]
+                else:
+                    raise ValueError('Unterminated Character Literal')
+
+                
+                

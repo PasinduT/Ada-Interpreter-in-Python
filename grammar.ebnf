@@ -1,0 +1,25 @@
+statements ::= statement semicolon statement
+with_statement ::= WITH PackageName
+ProcedureStatement ::= PROCEDURE ProcedureName IS
+ProcedureCalling ::= ProcedureName lbracket {[formalParameters wierdassign] actualparameter} rbracket
+BeginStatement ::= BEGIN
+EndStatement ::= END ProcedureName
+
+characterLiteral ::= singlequote characters singlequote
+float ::= integer dot integer
+integer ::= digit{[_]digit}
+identifier ::= letter {[_]letter_or_digit}
+operator ::= + | - | * | /
+stringLiteral ::= quote {characters} quote
+
+characters ::= uppercase | lowercase | digit
+quote ::= "
+singlequote ::= '
+dot ::= .
+letter_or_digit ::= letter | digit
+letter ::= uppercase | lowercase
+uppercase ::= A | B | C | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | U | V | W | X | Y | Z
+lowercase ::= a | b | c | d | e | f | g | h | i | j | k | l | m | n | o | p | q | r | s | t | u | v | w | x | y | z
+digits ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+lbracket ::= (
+rbracket ::= )
